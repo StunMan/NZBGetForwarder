@@ -1,9 +1,4 @@
 
-var host = localStorage["server"];
-var port = localStorage["port"];
-var username = localStorage["username"];
-var password = localStorage["password"];
-
 var sendToNzbGet = function (fileName, data, host, port, username, password) {
   var text = btoa(data);
 
@@ -26,6 +21,12 @@ chrome.downloads.onChanged.addListener(function(downloadDelta) {
 				var xhr = new XMLHttpRequest();
 				xhr.onload = function() {
 					var content = xhr.responseText;
+					
+					var host = localStorage["server"];
+					var port = localStorage["port"];
+					var username = localStorage["username"];
+					var password = localStorage["password"];
+					
 					sendToNzbGet(item.filename, content, host, port, username, password);
 
 					chrome.downloads.removeFile(item.id);
