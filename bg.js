@@ -33,7 +33,7 @@ chrome.downloads.onChanged.addListener(function(downloadDelta) {
 					chrome.downloads.erase({"id": item.id});
 					console.log(item.filename + " sent to nzbget");
 				}
-				xhr.open("GET", item.filename);
+				xhr.open("GET", "file://"+item.filename);
 				xhr.send();
 			}
 		});
